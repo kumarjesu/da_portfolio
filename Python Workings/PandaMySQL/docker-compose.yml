@@ -1,0 +1,16 @@
+services:
+  postgresqldbPython:
+    container_name: postgresqldbPython
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_DB=pythonDatabase
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+    ports:
+      - "5200:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+volumes:
+  postgres_data:
